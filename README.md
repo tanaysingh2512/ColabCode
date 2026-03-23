@@ -105,23 +105,6 @@ FastAPI application
              Grafana
 ```
 
-## Why CRDT instead of locking or last-write-wins
-
-Collaborative code editing breaks down quickly if you rely on naive locking or “whoever writes last wins.” Users need to type concurrently without losing changes.
-
-This project uses `Yjs`, a CRDT library, so concurrent edits merge automatically and deterministically. That lets multiple users edit the same file with low latency and without introducing manual conflict resolution into the typing loop.
-
-## Why FastAPI instead of Node for the collaboration backend
-
-Most real-time editor tutorials use Node. This project intentionally uses `FastAPI` to demonstrate that the collaboration model is not tied to the usual JavaScript stack.
-
-That choice also highlights:
-
-- async Python service design
-- WebSocket handling in FastAPI
-- SQLAlchemy async persistence
-- Redis-backed horizontal coordination
-- a backend implementation that is interview-distinct from the usual tutorial path
 
 ## Data model
 
@@ -175,29 +158,6 @@ File 1---* FileSnapshot
 - `GET /healthz`
 - `GET /metrics`
 
-## WebSocket contract
-
-Each editor tab collaborates on a single file:
-
-```text
-/ws/files/{file_id}?token=...&session_id=...&color=...
-```
-
-Server events:
-
-- `file.snapshot`
-- `document.update`
-- `document.ack`
-- `presence.update`
-- `presence.leave`
-- `file.language`
-- `error`
-
-Client events:
-
-- `document.update`
-- `presence.update`
-- `file.language`
 
 ## Real-time flow
 
@@ -210,15 +170,6 @@ Client events:
 7. Updates are broadcast to other clients and other backend instances through Redis.
 8. Snapshots are periodically persisted back to Postgres.
 
-## UX details that matter
-
-- Auth is stored per tab, not globally across all tabs.
-  This means a shared link can be opened in a fresh tab and signed in as another user.
-- File contents are persistent by design.
-  This matches Google Docs and GitHub expectations more than temporary “rooms.”
-- Shared links require sign-in before joining.
-- Owners can delete projects from the dashboard or project view.
-- Demo password reset returns a reset link in non-production mode so the flow is testable locally.
 
 ## Local setup
 
@@ -270,6 +221,9 @@ Grafana default credentials:
 2. Submit the email
 3. In local development, open the returned reset link
 4. Set a new password
+
+<img width="1469" height="808" alt="Screenshot 2026-03-23 at 8 18 02 PM" src="https://github.com/user-attachments/assets/351749f9-cda3-46db-9789-6bceed86e92e" />
+
 
 ## Running without Docker
 
@@ -335,12 +289,6 @@ ops/         Prometheus config
 grafana/     Provisioned dashboards
 ```
 
-## Current limitations
-
-- Sharing is link-based for signed-in users rather than explicit email invites
-- No Git commit/branch model yet
-- Single-project view, not a full desktop IDE shell
-- No full CI-backed browser E2E suite yet
 
 ## Next steps
 
@@ -351,6 +299,3 @@ grafana/     Provisioned dashboards
 - repo import/export
 - stronger deployment and production secret handling
 
-## Resume-ready summary
-
-Built a real-time collaborative coding workspace using `FastAPI`, `React`, `WebSockets`, `Yjs`, `Redis`, and `PostgreSQL`, with authenticated users, persistent projects, multi-file collaboration, and conflict-free per-file editing backed by CRDT state sync.
