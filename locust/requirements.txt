@@ -1,0 +1,4 @@
+locust==2.32.4
+websocket-client==1.8.0
+y-py==0.6.2
+requests==2.32.3

@@ -1,0 +1,16 @@
+.DS_Store
+.env
+.venv
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.pyc
+node_modules/
+dist/
+coverage/
+postgres-data/
+grafana-data/
+mlruns/
+models/
+db/init.sql/
