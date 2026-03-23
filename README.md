@@ -27,6 +27,8 @@ Not:
 Anonymous users -> temporary rooms
 ```
 
+<img width="1469" height="808" alt="Screenshot 2026-03-23 at 8 18 02 PM" src="https://github.com/user-attachments/assets/f364b22f-7a3c-4db4-ac17-356e8211593d" />
+
 ## Core features
 
 - Email/password authentication with per-tab sessions
@@ -125,40 +127,6 @@ Project 1---* File
 File 1---* FileSnapshot
 ```
 
-## API overview
-
-### Auth
-
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
-- `POST /api/v1/auth/forgot-password`
-- `POST /api/v1/auth/reset-password`
-- `GET /api/v1/auth/me`
-
-### Projects
-
-- `GET /api/v1/projects`
-- `POST /api/v1/projects`
-- `GET /api/v1/projects/{project_id}`
-- `DELETE /api/v1/projects/{project_id}`
-- `POST /api/v1/projects/{project_id}/files`
-
-### Files
-
-- `GET /api/v1/files/{file_id}`
-- `POST /api/v1/files/{file_id}/join`
-- `POST /api/v1/files/{file_id}/sessions`
-
-### Execution
-
-- `POST /api/v1/execute`
-
-### Infra
-
-- `GET /healthz`
-- `GET /metrics`
-
-
 ## Real-time flow
 
 1. User opens a file in a project.
@@ -221,8 +189,6 @@ Grafana default credentials:
 2. Submit the email
 3. In local development, open the returned reset link
 4. Set a new password
-
-<img width="1469" height="808" alt="Screenshot 2026-03-23 at 8 18 02 PM" src="https://github.com/user-attachments/assets/351749f9-cda3-46db-9789-6bceed86e92e" />
 
 
 ## Running without Docker
