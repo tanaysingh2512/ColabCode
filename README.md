@@ -129,14 +129,14 @@ File 1---* FileSnapshot
 
 ## Real-time flow
 
-1. User opens a file in a project.
-2. Frontend ensures the signed-in user has access to the file.
-3. Frontend creates a collaborative file session.
-4. Frontend opens a WebSocket connection for that file.
-5. Backend hydrates the document from the persisted Yjs snapshot.
-6. Local edits are turned into Yjs updates.
-7. Updates are broadcast to other clients and other backend instances through Redis.
-8. Snapshots are periodically persisted back to Postgres.
+1. User opens a file in a project
+2. Frontend ensures the signed-in user has access to the file
+3. Frontend creates a collaborative file session
+4. Frontend opens a WebSocket connection for that file
+5. Backend hydrates the document from the persisted Yjs snapshot
+6. Local edits are turned into Yjs updates
+7. Updates are broadcast to other clients and other backend instances through Redis
+8. Snapshots are periodically persisted back to Postgres
 
 
 ## Local setup
