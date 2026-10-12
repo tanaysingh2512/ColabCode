@@ -1,5 +1,6 @@
 # CollabCode
 
+A real-time collaborative code editor enabling multiple users to edit code simultaneously with live cursors, conflict-free syncing, and a scalable backend
 Google Docs collaboration, VS Code editing, and GitHub-style project ownership in one real-time coding workspace.
 
 CollabCode is a full-stack collaborative editor built with `FastAPI`, `React`, `Monaco`, `Yjs`, `Redis`, and `PostgreSQL`. Users sign in, create persistent projects, edit multiple files, share file links with other signed-in users, and collaborate live with cursor presence, autosave, and conflict-free CRDT sync.
